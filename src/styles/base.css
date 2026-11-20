@@ -1,0 +1,102 @@
+@layer base {
+  html {
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    text-rendering: optimizeLegibility;
+  }
+
+  body,
+  button,
+  input,
+  select,
+  textarea {
+    font-family: var(--font-sans);
+  }
+
+  body {
+    min-height: 100vh;
+    padding-top: var(--header-height);
+    background-color: var(--color-canvas);
+    color: var(--color-ink);
+    font-size: var(--type-body-size);
+    font-weight: 400;
+    line-height: var(--type-body-leading);
+    -webkit-font-smoothing: antialiased;
+  }
+
+  h1,
+  .type-display {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-display-size);
+    font-weight: 400;
+    line-height: var(--type-display-leading);
+    letter-spacing: var(--type-display-tracking);
+  }
+
+  h2,
+  .type-heading {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-heading-size);
+    font-weight: 400;
+    line-height: var(--type-heading-leading);
+    letter-spacing: var(--type-heading-tracking);
+  }
+
+  h3,
+  .type-subheading {
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--type-subheading-size);
+    font-weight: 500;
+    line-height: var(--type-subheading-leading);
+    letter-spacing: var(--type-subheading-tracking);
+  }
+
+  h4 {
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1.125rem;
+    font-weight: 500;
+    line-height: 1.4;
+    letter-spacing: -0.01em;
+  }
+
+  p,
+  .type-body {
+    color: var(--color-ink-muted);
+    font-size: var(--type-body-size);
+    font-weight: 400;
+    line-height: var(--type-body-leading);
+  }
+
+  .type-label {
+    color: var(--color-ink-subtle);
+    font-family: var(--font-sans);
+    font-size: var(--type-label-size);
+    font-weight: 500;
+    line-height: var(--type-label-leading);
+    letter-spacing: var(--type-label-tracking);
+    text-transform: uppercase;
+  }
+
+  .type-nav {
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: var(--type-nav-size);
+    font-weight: 500;
+    line-height: var(--type-nav-leading);
+    letter-spacing: var(--type-nav-tracking);
+  }
+
+  ::selection {
+    background-color: var(--color-accent-soft);
+    color: var(--color-ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-ink);
+    outline-offset: 3px;
+  }
+}

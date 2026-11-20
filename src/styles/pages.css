@@ -1,0 +1,675 @@
+@layer components {
+  .page-intro {
+    padding-top: var(--space-section-tight);
+    padding-bottom: var(--space-section);
+  }
+
+  .page-banner {
+    margin-top: calc(var(--space-section) * -0.65);
+    margin-bottom: var(--space-section);
+  }
+
+  .page-intro h1,
+  .band h2,
+  .band h3,
+  .band p,
+  .page-lede,
+  .intro-lead,
+  .stat-value,
+  .stat-label,
+  .price,
+  .enquiry-form,
+  .form-success {
+    margin: 0;
+  }
+
+  .page-lede,
+  .band-head,
+  .intro-lead {
+    max-width: 42rem;
+  }
+
+  .cluster,
+  .band-head,
+  .card-body,
+  .enquiry-form,
+  .stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.85rem;
+  }
+
+  .cluster-lg {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+  }
+
+  .band {
+    padding-block: var(--space-section);
+  }
+
+  .band-muted {
+    background-color: var(--color-surface);
+  }
+
+  .band-inverse {
+    background-color: var(--color-inverse);
+    color: var(--color-on-inverse);
+  }
+
+  .band-inverse h2,
+  .band-inverse h3,
+  .band-inverse .stat-value,
+  .band-inverse .type-label {
+    color: var(--color-on-inverse);
+  }
+
+  .band-inverse p,
+  .band-inverse .stat-label {
+    color: var(--color-stone);
+  }
+
+  .band-more {
+    margin-top: 1.5rem;
+  }
+
+  .intro-lead {
+    margin-bottom: 2rem;
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-subheading-size);
+    line-height: var(--type-subheading-leading);
+    letter-spacing: var(--type-subheading-tracking);
+  }
+
+  .split,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .stat-grid,
+  .studio,
+  .card-grid,
+  .step-list,
+  .path-list,
+  .chip-list,
+  .specimen,
+  .point-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .split,
+  .grid-2,
+  .grid-3,
+  .grid-4,
+  .stat-grid,
+  .studio {
+    display: grid;
+    gap: var(--space-card);
+  }
+
+  .card-grid {
+    display: grid;
+    gap: var(--space-card);
+  }
+
+  .align-start {
+    align-items: start;
+  }
+
+  a.catalog-link {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+  }
+
+  .photo {
+    position: relative;
+    overflow: hidden;
+    background-color: var(--color-surface-muted);
+    border-radius: var(--radius-md);
+  }
+
+  .photo img {
+    object-fit: cover;
+  }
+
+  .photo-wide {
+    aspect-ratio: 16 / 10;
+  }
+
+  .photo-tall {
+    aspect-ratio: 4 / 5;
+  }
+
+  .media-card .photo {
+    border-radius: 0;
+  }
+
+  .card-body h3,
+  .point-list h3,
+  .step-list h3 {
+    margin: 0;
+  }
+
+  .stat-grid li,
+  .point-list li {
+    min-width: 0;
+  }
+
+  .stat-value {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-heading-size);
+    line-height: 1;
+    letter-spacing: var(--type-heading-tracking);
+  }
+
+  .stat-label {
+    margin-top: 0.4rem;
+    color: var(--color-ink-subtle);
+    font-size: 0.875rem;
+  }
+
+  .point-list {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .point-list li {
+    padding-left: 0.9rem;
+    border-left: 2px solid var(--color-accent);
+  }
+
+  .badge-line {
+    color: var(--color-accent);
+    font-weight: 500;
+  }
+
+  .step-list {
+    display: grid;
+    gap: 0.75rem;
+  }
+
+  .step-list li {
+    display: grid;
+    grid-template-columns: auto minmax(0, 1fr);
+    gap: 0.85rem;
+    padding: var(--space-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .step-index {
+    color: var(--color-accent);
+    font-family: var(--font-display);
+    font-size: 1.5rem;
+    line-height: 1;
+  }
+
+  .path-list,
+  .chip-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.75rem 1.25rem;
+    margin-top: 1.5rem;
+  }
+
+  .chip-list a {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.5rem;
+    padding: 0.4rem 0.85rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-sm);
+    color: var(--color-ink);
+    text-decoration: none;
+  }
+
+  .chip-list a:hover {
+    border-color: var(--color-ink);
+    background-color: var(--color-surface-muted);
+  }
+
+  .price {
+    color: var(--color-ink);
+    font-family: var(--font-display);
+    font-size: var(--type-subheading-size);
+    line-height: 1.2;
+  }
+
+  .price span,
+  .specimen,
+  .timeline p,
+  address p {
+    color: var(--color-ink-muted);
+    font-family: var(--font-sans);
+    font-size: var(--type-body-size);
+    font-style: normal;
+    line-height: var(--type-body-leading);
+  }
+
+  .price span {
+    display: block;
+    margin-top: 0.2rem;
+    font-size: 0.875rem;
+  }
+
+  .specimen {
+    display: flex;
+    flex-direction: column;
+    gap: 0.45rem;
+  }
+
+  .specimen li {
+    padding-top: 0.45rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .table-scroll {
+    overflow-x: auto;
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+  }
+
+  .table-scroll table {
+    width: 100%;
+    min-width: 40rem;
+    border-collapse: collapse;
+  }
+
+  .table-scroll caption {
+    padding: 0.85rem 1rem 0;
+    color: var(--color-ink-subtle);
+    font-size: 0.875rem;
+    text-align: left;
+  }
+
+  .table-scroll th,
+  .table-scroll td {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--color-line);
+    color: var(--color-ink-muted);
+    text-align: left;
+    vertical-align: top;
+  }
+
+  .table-scroll th {
+    color: var(--color-ink-subtle);
+    font-size: var(--type-label-size);
+    font-weight: 500;
+    letter-spacing: var(--type-label-tracking);
+    text-transform: uppercase;
+  }
+
+  .table-scroll td:first-child {
+    color: var(--color-ink);
+    font-weight: 500;
+  }
+
+  .faq-list {
+    display: flex;
+    flex-direction: column;
+    margin-top: 1.5rem;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .faq-list details {
+    border-bottom: 1px solid var(--color-line);
+  }
+
+  .faq-list summary {
+    padding-block: 1rem;
+    color: var(--color-ink);
+    font-weight: 500;
+    cursor: pointer;
+  }
+
+  .faq-list details p {
+    padding-bottom: 1rem;
+  }
+
+  .layout-narrow-block {
+    max-width: calc(var(--width-narrow) + (var(--space-gutter) * 2));
+  }
+
+  blockquote {
+    margin: 0;
+  }
+
+  blockquote footer {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    margin-top: 0.35rem;
+  }
+
+  blockquote cite {
+    color: var(--color-ink);
+    font-style: normal;
+    font-weight: 500;
+  }
+
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    border-left: 2px solid var(--color-line);
+  }
+
+  .timeline li {
+    padding: 0 0 1.5rem 1.25rem;
+  }
+
+  .timeline h3 {
+    margin: 0.15rem 0 0.35rem;
+  }
+
+  .enquiry-form label {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    color: var(--color-ink);
+    font-size: 0.875rem;
+    font-weight: 500;
+  }
+
+  .enquiry-form input,
+  .enquiry-form select,
+  .enquiry-form textarea {
+    width: 100%;
+    min-height: 2.75rem;
+    padding: 0.65rem 0.75rem;
+    border: 1px solid var(--color-line-strong);
+    border-radius: var(--radius-sm);
+    background-color: var(--color-surface);
+    color: var(--color-ink);
+    font: inherit;
+  }
+
+  .enquiry-form textarea {
+    min-height: 8rem;
+    resize: vertical;
+  }
+
+  .enquiry-form input[aria-invalid="true"],
+  .enquiry-form select[aria-invalid="true"],
+  .enquiry-form textarea[aria-invalid="true"] {
+    border-color: var(--color-accent);
+  }
+
+  .field-error {
+    color: var(--color-accent);
+    font-size: 0.8125rem;
+    font-weight: 400;
+  }
+
+  .form-success {
+    padding: var(--space-card);
+    background-color: var(--color-surface);
+    border: 1px solid var(--color-line);
+    border-radius: var(--radius-md);
+    color: var(--color-ink);
+  }
+
+  .form-row {
+    display: grid;
+    gap: 0.85rem;
+  }
+
+  .map-block address {
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+
+  .map-block address a {
+    color: var(--color-ink);
+  }
+
+  .visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  @media (min-width: 48rem) {
+    .split,
+    .grid-2,
+    .form-row {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .grid-3,
+    .stat-grid {
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .grid-4,
+    .step-list,
+    .stat-grid-4 {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .studio {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) minmax(0, 0.8fr);
+      align-items: center;
+    }
+  }
+
+  @media (min-width: 80rem) {
+    .grid-4,
+    .stat-grid {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+
+    .stat-grid.wide-stats,
+    .band-inverse .stat-grid {
+      grid-template-columns: repeat(6, minmax(0, 1fr));
+    }
+
+    .stat-grid-4 {
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+    }
+  }
+
+  main > .band:nth-child(odd of .band) {
+    background-color: #141414;
+    background-image: repeating-linear-gradient(
+      90deg,
+      rgb(243 245 247 / 0.07) 0,
+      rgb(243 245 247 / 0.025) 42px,
+      rgb(243 245 247 / 0) 90px,
+      rgb(243 245 247 / 0) 150px
+    );
+    color: var(--color-on-inverse);
+  }
+
+  main > .band:nth-child(even of .band) {
+    position: relative;
+    isolation: isolate;
+    background-color: #d9c2ad;
+    background-image:
+      url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Cfilter%20id%3D%22veins%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.008%22%20numOctaves%3D%224%22%20seed%3D%2215%22%20stitchTiles%3D%22stitch%22%20result%3D%22field%22%2F%3E%3CfeColorMatrix%20in%3D%22field%22%20type%3D%22matrix%22%20values%3D%220.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%22%20result%3D%22gray%22%2F%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22lowCrack%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%22120%22%20intercept%3D%22-59.4%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22highCrack%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%22120%22%20intercept%3D%22-60.36%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComposite%20in%3D%22lowCrack%22%20in2%3D%22highCrack%22%20operator%3D%22out%22%20result%3D%22crackMask%22%2F%3E%3CfeFlood%20flood-color%3D%22%239E826B%22%20flood-opacity%3D%220.28%22%20result%3D%22ink%22%2F%3E%3CfeComposite%20in%3D%22ink%22%20in2%3D%22crackMask%22%20operator%3D%22in%22%20result%3D%22brownVeins%22%2F%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22lowCalcite%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%2270%22%20intercept%3D%22-27.3%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22highCalcite%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%2270%22%20intercept%3D%22-28.7%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComposite%20in%3D%22lowCalcite%22%20in2%3D%22highCalcite%22%20operator%3D%22out%22%20result%3D%22calciteMask%22%2F%3E%3CfeFlood%20flood-color%3D%22%23E5D2C0%22%20flood-opacity%3D%220.16%22%20result%3D%22chalk%22%2F%3E%3CfeComposite%20in%3D%22chalk%22%20in2%3D%22calciteMask%22%20operator%3D%22in%22%20result%3D%22calcite%22%2F%3E%3CfeGaussianBlur%20in%3D%22calcite%22%20stdDeviation%3D%220.9%22%20result%3D%22softCalcite%22%2F%3E%3CfeComposite%20in%3D%22softCalcite%22%20in2%3D%22brownVeins%22%20operator%3D%22over%22%20result%3D%22streaks%22%2F%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.04%22%20numOctaves%3D%222%22%20seed%3D%229%22%20stitchTiles%3D%22stitch%22%20result%3D%22warp%22%2F%3E%3CfeDisplacementMap%20in%3D%22streaks%22%20in2%3D%22warp%22%20scale%3D%2235%22%20xChannelSelector%3D%22R%22%20yChannelSelector%3D%22G%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20filter%3D%22url%28%23veins%29%22%2F%3E%3C%2Fsvg%3E"),
+      url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Cfilter%20id%3D%22veins%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.008%22%20numOctaves%3D%224%22%20seed%3D%222%22%20stitchTiles%3D%22stitch%22%20result%3D%22field%22%2F%3E%3CfeColorMatrix%20in%3D%22field%22%20type%3D%22matrix%22%20values%3D%220.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%22%20result%3D%22gray%22%2F%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22lowCrack%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%22120%22%20intercept%3D%22-59.4%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22highCrack%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%22120%22%20intercept%3D%22-60.36%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComposite%20in%3D%22lowCrack%22%20in2%3D%22highCrack%22%20operator%3D%22out%22%20result%3D%22crackMask%22%2F%3E%3CfeFlood%20flood-color%3D%22%239E826B%22%20flood-opacity%3D%220.4%22%20result%3D%22ink%22%2F%3E%3CfeComposite%20in%3D%22ink%22%20in2%3D%22crackMask%22%20operator%3D%22in%22%20result%3D%22brownVeins%22%2F%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22lowCalcite%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%2270%22%20intercept%3D%22-27.3%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComponentTransfer%20in%3D%22gray%22%20result%3D%22highCalcite%22%3E%3CfeFuncA%20type%3D%22linear%22%20slope%3D%2270%22%20intercept%3D%22-28.7%22%2F%3E%3C%2FfeComponentTransfer%3E%3CfeComposite%20in%3D%22lowCalcite%22%20in2%3D%22highCalcite%22%20operator%3D%22out%22%20result%3D%22calciteMask%22%2F%3E%3CfeFlood%20flood-color%3D%22%23E5D2C0%22%20flood-opacity%3D%220.22%22%20result%3D%22chalk%22%2F%3E%3CfeComposite%20in%3D%22chalk%22%20in2%3D%22calciteMask%22%20operator%3D%22in%22%20result%3D%22calcite%22%2F%3E%3CfeGaussianBlur%20in%3D%22calcite%22%20stdDeviation%3D%220.9%22%20result%3D%22softCalcite%22%2F%3E%3CfeComposite%20in%3D%22softCalcite%22%20in2%3D%22brownVeins%22%20operator%3D%22over%22%20result%3D%22streaks%22%2F%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.04%22%20numOctaves%3D%222%22%20seed%3D%226%22%20stitchTiles%3D%22stitch%22%20result%3D%22warp%22%2F%3E%3CfeDisplacementMap%20in%3D%22streaks%22%20in2%3D%22warp%22%20scale%3D%2235%22%20xChannelSelector%3D%22R%22%20yChannelSelector%3D%22G%22%2F%3E%3C%2Ffilter%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20filter%3D%22url%28%23veins%29%22%2F%3E%3C%2Fsvg%3E"),
+      url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22800%22%20height%3D%22800%22%20viewBox%3D%220%200%20800%20800%22%3E%3Cfilter%20id%3D%22mottle%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.015%22%20numOctaves%3D%225%22%20seed%3D%224%22%20stitchTiles%3D%22stitch%22%20result%3D%22noise%22%2F%3E%3CfeColorMatrix%20in%3D%22noise%22%20type%3D%22matrix%22%20values%3D%220.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200%200%200%201%200%22%20result%3D%22gray%22%2F%3E%3CfeColorMatrix%20in%3D%22gray%22%20type%3D%22matrix%22%20values%3D%221.08%200%200%200%20-0.04%200%201.08%200%200%20-0.04%200%200%201.08%200%20-0.04%200%200%200%201%200%22%20result%3D%22spread%22%2F%3E%3CfeComponentTransfer%20in%3D%22spread%22%3E%3CfeFuncR%20type%3D%22table%22%20tableValues%3D%220.822%200.851%200.872%200.836%200.822%200.872%200.851%22%2F%3E%3CfeFuncG%20type%3D%22table%22%20tableValues%3D%220.728%200.761%200.786%200.742%200.728%200.786%200.761%22%2F%3E%3CfeFuncB%20type%3D%22table%22%20tableValues%3D%220.642%200.678%200.708%200.658%200.642%200.708%200.678%22%2F%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3Crect%20width%3D%22800%22%20height%3D%22800%22%20filter%3D%22url%28%23mottle%29%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+    background-position: 220px 140px, 0 0, 40px 24px;
+    background-size: 1040px 1040px, 1280px 1280px, 800px 800px;
+    color: var(--color-ink);
+  }
+
+  main > .band:nth-child(even of .band)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%22400%22%20height%3D%22400%22%20viewBox%3D%220%200%20400%20400%22%3E%3Cfilter%20id%3D%22grain%22%20x%3D%220%22%20y%3D%220%22%20width%3D%22100%25%22%20height%3D%22100%25%22%20color-interpolation-filters%3D%22sRGB%22%3E%3CfeTurbulence%20type%3D%22fractalNoise%22%20baseFrequency%3D%220.18%22%20numOctaves%3D%223%22%20seed%3D%2211%22%20stitchTiles%3D%22stitch%22%20result%3D%22n%22%2F%3E%3CfeColorMatrix%20in%3D%22n%22%20type%3D%22matrix%22%20values%3D%220.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200.333%200.333%200.334%200%200%200%200%200%201%200%22%20result%3D%22gray%22%2F%3E%3CfeComponentTransfer%20in%3D%22gray%22%3E%3CfeFuncR%20type%3D%22linear%22%20slope%3D%222.4%22%20intercept%3D%22-0.7%22%2F%3E%3CfeFuncG%20type%3D%22linear%22%20slope%3D%222.4%22%20intercept%3D%22-0.7%22%2F%3E%3CfeFuncB%20type%3D%22linear%22%20slope%3D%222.4%22%20intercept%3D%22-0.7%22%2F%3E%3C%2FfeComponentTransfer%3E%3C%2Ffilter%3E%3Crect%20width%3D%22400%22%20height%3D%22400%22%20filter%3D%22url%28%23grain%29%22%2F%3E%3C%2Fsvg%3E");
+    background-repeat: repeat;
+    background-size: 400px 400px;
+    opacity: 0.045;
+    mix-blend-mode: multiply;
+  }
+
+  main > .band:nth-child(odd of .band) :is(
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      li,
+      .type-label,
+      .intro-lead,
+      .stat-value,
+      .stat-label,
+      .link,
+      .price,
+      .price span,
+      .forged-base,
+      summary,
+      label,
+      address,
+      address a,
+      blockquote,
+      cite
+    ),
+  main > .band:nth-child(even of .band) :is(
+      h1,
+      h2,
+      h3,
+      h4,
+      p,
+      li,
+      .type-label,
+      .intro-lead,
+      .stat-value,
+      .stat-label,
+      .link,
+      .price,
+      .price span,
+      .forged-base,
+      summary,
+      label,
+      address,
+      address a,
+      blockquote,
+      cite
+    ) {
+    color: inherit;
+  }
+
+  main > .band:nth-child(odd of .band) .faq-list,
+  main > .band:nth-child(odd of .band) .faq-list details,
+  main > .band:nth-child(odd of .band) .specimen li,
+  main > .band:nth-child(odd of .band) .timeline {
+    border-color: rgb(243 245 247 / 0.22);
+  }
+
+  main > .band:nth-child(odd of .band) .point-list li {
+    border-left-color: #ffaa1d;
+  }
+
+  main > .band:nth-child(odd of .band) :is(.badge-line, .field-error) {
+    color: #ffaa1d;
+  }
+
+  main > .band:nth-child(even of .band) .faq-list,
+  main > .band:nth-child(even of .band) .faq-list details,
+  main > .band:nth-child(even of .band) .specimen li {
+    border-color: rgb(26 31 36 / 0.18);
+  }
+
+  main > .band:nth-child(odd of .band) .btn-secondary {
+    border-color: rgb(243 245 247 / 0.45);
+    color: var(--color-on-inverse);
+    background-color: transparent;
+  }
+
+  main > .band:nth-child(odd of .band) .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-on-inverse);
+    background-color: rgb(243 245 247 / 0.08);
+  }
+
+  main > .band:nth-child(even of .band) .btn-secondary {
+    border-color: rgb(26 31 36 / 0.4);
+    color: var(--color-ink);
+    background-color: transparent;
+  }
+
+  main > .band:nth-child(even of .band) .btn-secondary:hover:not(:disabled) {
+    border-color: var(--color-ink);
+    background-color: rgb(26 31 36 / 0.06);
+  }
+
+  main > .band:nth-child(even of .band) .forged-iron-metal {
+    color: var(--color-ink-muted);
+    -webkit-text-fill-color: var(--color-ink-muted);
+  }
+
+  main > .band:is(:nth-child(odd of .band), :nth-child(even of .band)) :is(
+      .card,
+      .table-scroll,
+      .chip-list a,
+      .form-success,
+      .step-list li,
+      .enquiry-form input,
+      .enquiry-form select,
+      .enquiry-form textarea
+    ) {
+    color: var(--color-ink);
+  }
+
+  main > .band:is(:nth-child(odd of .band), :nth-child(even of .band)) :is(
+      .card,
+      .table-scroll,
+      .step-list li,
+      .form-success
+    ) :is(
+      h2,
+      h3,
+      h4,
+      p,
+      li,
+      .type-label,
+      .price,
+      .price span,
+      .project-card-title,
+      .stat-value,
+      .stat-label,
+      th,
+      td,
+      caption,
+      a,
+      cite
+    ) {
+    color: var(--color-ink);
+  }
+
+  main > .band:is(:nth-child(odd of .band), :nth-child(even of .band)) :is(
+      .table-scroll th,
+      .card .type-label,
+      .step-list .type-label
+    ) {
+    color: var(--color-ink-subtle);
+  }
+
+  main > .band:is(:nth-child(odd of .band), :nth-child(even of .band)) .chip-list a {
+    border-color: rgb(26 31 36 / 0.28);
+    background-color: var(--color-surface);
+  }
+}
