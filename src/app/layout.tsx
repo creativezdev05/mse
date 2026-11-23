@@ -6,7 +6,7 @@ import { TrowelCursor } from "@/components/layout/TrowelCursor";
 import { brand } from "@/lib/site";
 import { spaceGrotesk } from "./fonts";
 import "./globals.css";
-
+import ScrollToTop from "@/components/ScrollToTop";
 export const metadata: Metadata = {
   title: {
     default: brand.name,
@@ -21,6 +21,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={spaceGrotesk.variable}
     >
       <body>
+        <ScrollToTop />
         <TrowelCursor />
         <SiteHeader />
         {children}

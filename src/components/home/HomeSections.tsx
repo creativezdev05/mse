@@ -9,8 +9,16 @@ import {
   serviceOptions,
 } from "@/data/content";
 import { areaLinks } from "@/data/menus";
+import { AreaTicker } from "@/components/home/AreaTicker";
 import { IntroLead } from "@/components/home/IntroLead";
+import { IntroStats } from "@/components/home/IntroStats";
+import { TrustCards } from "@/components/home/TrustCards";
+import { PointList } from "@/components/home/PointList";
+import { StatCounters } from "@/components/home/StatCounters";
 import { ForgedLine } from "@/components/ui/ForgedLine";
+import { motion, AnimatePresence } from "motion/react";
+import ConstructionGallery from "@/components/home/ConstructionGallery";
+import "@/styles/home.css";
 
 const cardImage = "(min-width: 80rem) 28vw, (min-width: 48rem) 45vw, 100vw";
 
@@ -20,16 +28,7 @@ export function HomeSections() {
       <section className="band intro-band" aria-labelledby="home-intro-title">
         <div className="layout-shell-wide intro-stage">
           <IntroLead id="home-intro-title">{home.intro.lead}</IntroLead>
-          <ul className="intro-stats">
-            {home.intro.stats.map((item) => (
-              <li key={item.label} className="intro-stat">
-                <div className="intro-stat-face">
-                  <p className="stat-value">{item.value}</p>
-                  <p className="stat-label">{item.label}</p>
-                </div>
-              </li>
-            ))}
-          </ul>
+          <IntroStats stats={home.intro.stats} />
         </div>
       </section>
 
@@ -45,14 +44,14 @@ export function HomeSections() {
               {home.excellence.cta.label}
             </Link>
           </div>
-          <ul className="point-list">
+            <PointList>
             {home.excellence.points.map((point) => (
               <li key={point.title}>
                 <h3>{point.title}</h3>
                 <p>{point.text}</p>
               </li>
             ))}
-          </ul>
+          </PointList>
         </div>
       </section>
 
@@ -77,6 +76,9 @@ export function HomeSections() {
           </ul>
         </div>
       </section>
+      <ConstructionGallery
+        items={home.services.items}
+      />
 
       <section className="band band-muted" aria-labelledby="home-trust-title">
         <div className="layout-shell-wide split align-start">
@@ -85,16 +87,7 @@ export function HomeSections() {
             <h2 id="home-trust-title"><ForgedLine text={home.trust.title} /></h2>
             <p>{home.trust.body}</p>
           </div>
-          <ul className="grid-2 card-grid">
-            {home.trust.items.map((item) => (
-              <li key={item.title}>
-                <article className="card card-body">
-                  <h3>{item.title}</h3>
-                  <p>{item.text}</p>
-                </article>
-              </li>
-            ))}
-          </ul>
+          <TrustCards items={home.trust.items} />
         </div>
       </section>
 
@@ -134,14 +127,14 @@ export function HomeSections() {
             <h2 id="home-precision-title"><ForgedLine text={home.precision.title} /></h2>
             <p>{home.precision.body}</p>
             <h3>Where the work sits</h3>
-            <ul className="point-list">
+            <PointList>
               {home.precision.expertise.map((item) => (
                 <li key={item.title}>
                   <h3>{item.title}</h3>
                   <p>{item.text}</p>
                 </li>
               ))}
-            </ul>
+            </PointList>
             <Link href={home.precision.cta.href} className="link">
               {home.precision.cta.label}
             </Link>
@@ -382,13 +375,13 @@ export function HomeSections() {
           <div className="cluster">
             <h2 id="home-boq-title"><ForgedLine text={home.boq.title} /></h2>
             <p>{home.boq.body}</p>
-            <ul className="point-list">
+            <PointList>
               {home.boq.points.map((point) => (
                 <li key={point}>
                   <p>{point}</p>
                 </li>
               ))}
-            </ul>
+            </PointList>
           </div>
           <div className="card card-body">
             <h3>A specimen list</h3>
@@ -407,14 +400,7 @@ export function HomeSections() {
             <h2 id="home-coverage-title"><ForgedLine text={home.coverage.title} /></h2>
             <p>{home.coverage.body}</p>
           </div>
-          <ul className="stat-grid">
-            {home.coverage.stats.map((item) => (
-              <li key={item.label}>
-                <p className="stat-value">{item.value}</p>
-                <p className="stat-label">{item.label}</p>
-              </li>
-            ))}
-          </ul>
+          <StatCounters stats={home.coverage.stats} />
         </div>
       </section>
 
@@ -489,13 +475,7 @@ export function HomeSections() {
             <h2 id="home-areas-title"><ForgedLine text={home.societies.title} /></h2>
             <p>{home.societies.body}</p>
           </div>
-          <ul className="chip-list">
-            {areaLinks.map((area) => (
-              <li key={area.slug}>
-                <Link href={`/areas/${area.slug}`}>{area.title}</Link>
-              </li>
-            ))}
-          </ul>
+          <AreaTicker areas={areaLinks} />
         </div>
       </section>
     </>

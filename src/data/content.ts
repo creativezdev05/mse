@@ -397,7 +397,7 @@ export const home = {
     body: "Ignore the single per-foot number until you have seen these five things. We put all five on the table for every house.",
   },
   societies: {
-    title: "Where we are building",
+    title: "Societies we already work in",
     body: "Choose an area for the kind of approval, the current grey-structure band, and what the sites look like now.",
   },
 } as const;

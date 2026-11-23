@@ -274,17 +274,16 @@ export function RouteTruck() {
       return;
     }
 
+    // The page segment hydrates after this layout effect. Putting inert on
+    // <main> before that is reported as a hydration mismatch.
+    const frame = document.getElementById("site-frame");
     const previous = document.body.style.overflow;
-    const covered = [...document.body.children].filter(
-      (node) => node instanceof HTMLElement && !node.classList.contains("route-drive"),
-    );
-
     document.body.style.overflow = "hidden";
-    covered.forEach((node) => node.setAttribute("inert", ""));
+    frame?.setAttribute("inert", "");
 
     return () => {
       document.body.style.overflow = previous;
-      covered.forEach((node) => node.removeAttribute("inert"));
+      frame?.removeAttribute("inert");
     };
   }, [active]);
 

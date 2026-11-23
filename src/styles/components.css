@@ -775,8 +775,8 @@
   .home-hero-kicker {
     margin: 0;
     font-family: var(--font-rounded);
-    font-size: 0.8125rem;
-    font-weight: 400;
+    font-size: 0.875rem;
+    font-weight: 700;
     line-height: 1.35;
     letter-spacing: 0.12em;
     text-transform: uppercase;
@@ -789,10 +789,10 @@
     min-height: 2.15em;
     color: #fff;
     font-family: var(--font-rounded);
-    font-size: clamp(2.35rem, 1rem + 3.3vw, 4.15rem);
-    font-weight: 400;
-    line-height: 1.08;
-    letter-spacing: -0.02em;
+    font-size: clamp(2.55rem, 1.15rem + 3.6vw, 4.5rem);
+    font-weight: 700;
+    line-height: 1.05;
+    letter-spacing: -0.025em;
     text-wrap: balance;
   }
 
@@ -817,6 +817,11 @@
 
   .home-hero-title .hero-read::after {
     content: none;
+  }
+
+  .home-hero-title .forged-line-dark .forged-iron-metal {
+    color: #f7f4ef;
+    -webkit-text-fill-color: #f7f4ef;
   }
 
   .home-hero-title .forged-line-light {
@@ -890,7 +895,10 @@
     content: "";
     position: absolute;
     inset: 0;
-    background: rgb(42 18 10 / 0.12);
+    z-index: 1;
+    background: rgb(18 10 8 / 0.58);
+    backdrop-filter: blur(2.5px);
+    -webkit-backdrop-filter: blur(2.5px);
     pointer-events: none;
   }
 
@@ -929,32 +937,32 @@
     background-repeat: no-repeat;
     background-position: 50% 48%;
     background-size: 210% 210%;
-    filter: brightness(0.76) contrast(0.88) saturate(0.9);
+    filter: blur(0.6px) brightness(0.58) contrast(0.86) saturate(0.82);
   }
 
   .wall-brick[data-tone="0"] .wall-brick-face {
     background-position: 46% 46%;
-    filter: brightness(0.72) contrast(0.88) saturate(0.9);
+    filter: blur(0.6px) brightness(0.54) contrast(0.86) saturate(0.82);
   }
 
   .wall-brick[data-tone="1"] .wall-brick-face {
     background-position: 54% 44%;
-    filter: brightness(0.78) contrast(0.86) saturate(0.88);
+    filter: blur(0.6px) brightness(0.6) contrast(0.84) saturate(0.8);
   }
 
   .wall-brick[data-tone="2"] .wall-brick-face {
     background-position: 48% 54%;
-    filter: brightness(0.68) contrast(0.9) saturate(0.92);
+    filter: blur(0.6px) brightness(0.5) contrast(0.88) saturate(0.84);
   }
 
   .wall-brick[data-tone="3"] .wall-brick-face {
     background-position: 56% 50%;
-    filter: brightness(0.74) contrast(0.86) saturate(0.9);
+    filter: blur(0.6px) brightness(0.56) contrast(0.84) saturate(0.82);
   }
 
   .wall-brick[data-tone="4"] .wall-brick-face {
     background-position: 50% 42%;
-    filter: brightness(0.8) contrast(0.86) saturate(0.88);
+    filter: blur(0.6px) brightness(0.62) contrast(0.84) saturate(0.8);
   }
 
   .wall-coat {
@@ -1026,8 +1034,8 @@
     max-width: 28rem;
     min-height: 2.9em;
     font-family: var(--font-rounded);
-    font-size: 1.0625rem;
-    font-weight: 600;
+    font-size: 1.15rem;
+    font-weight: 700;
     line-height: 1.45;
   }
 
@@ -1053,8 +1061,8 @@
     background: transparent;
     color: #fff;
     font-family: var(--font-rounded);
-    font-size: 0.9375rem;
-    font-weight: 400;
+    font-size: 1rem;
+    font-weight: 700;
     line-height: 1;
     letter-spacing: 0.01em;
     cursor: pointer;
@@ -1485,7 +1493,7 @@
     }
 
     .home-hero-description {
-      font-size: 1rem;
+      font-size: 1.2rem;
     }
 
     .home-hero-image {
