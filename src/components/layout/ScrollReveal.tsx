@@ -142,7 +142,7 @@ export function ScrollReveal() {
         for (const item of batch) {
           if (!item.isConnected) continue;
           const owner = item.closest("section, header.page-intro, footer") ?? item.parentElement;
-          if (!owner) continue;
+          if (!(owner instanceof HTMLElement)) continue;
           const list = groups.get(owner) ?? [];
           list.push(item);
           groups.set(owner, list);
