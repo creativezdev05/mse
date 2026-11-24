@@ -115,6 +115,10 @@ const hop = 2.4;
 const lap = 0.28;
 const bucketUp = { y: 0, rotation: -128 };
 const bucketDown = { y: 0, rotation: 12 };
+const heroBucketUp = 0;
+const heroBucketDown = 16;
+const milestoneInset = 0.05;
+const craneImageSize = { width: 941, height: 647 };
 
 const drumPeriod = 16;
 const drumRibs = Array.from({ length: 9 }, (_, row) => {
@@ -203,6 +207,58 @@ function SiteExcavator() {
   );
 }
 
+function HeroCraneArtwork() {
+  return (
+    <div className="build-crane-artwork" aria-hidden="true">
+      <Image
+        src="/images/yard/crawler-body.png"
+        alt=""
+        {...craneImageSize}
+        sizes="5rem"
+        className="build-crane-layer-image build-crane-body-image"
+      />
+      <div className="build-crane-tracks-layer">
+        <Image
+          src="/images/yard/crawler_tracks.png"
+          alt=""
+          {...craneImageSize}
+          sizes="5rem"
+          className="build-crane-layer-image"
+        />
+      </div>
+      <div className="build-crane-boom-layer">
+        <Image
+          src="/images/yard/crawler-boom.png"
+          alt=""
+          {...craneImageSize}
+          sizes="5rem"
+          className="build-crane-layer-image"
+        />
+        <div className="build-crane-stick-layer">
+          <Image
+            src="/images/yard/crawler-stick.png"
+            alt=""
+            {...craneImageSize}
+            sizes="5rem"
+            className="build-crane-layer-image"
+          />
+          <div className="build-crane-bucket-travel-layer">
+            <div className="build-crane-bucket-action">
+              <Image
+                src="/images/yard/crawler-bucket.png"
+                alt=""
+                {...craneImageSize}
+                sizes="5rem"
+                className="build-crane-layer-image"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function HeroTitleWall() {
   return (
     <span className="home-hero-title-fill" aria-hidden="true">
@@ -257,6 +313,10 @@ export function HomeHero() {
     const truck = root.querySelector<HTMLElement>(".build-truck");
     const wheels = Array.from(root.querySelectorAll<SVGGElement>(".build-truck-wheel"));
     const crane = root.querySelector<HTMLElement>(".build-crane-rig");
+    const craneBoom = root.querySelector<HTMLElement>(".build-crane-boom-layer");
+    const craneStick = root.querySelector<HTMLElement>(".build-crane-stick-layer");
+    const craneBucketTravel = root.querySelector<HTMLElement>(".build-crane-bucket-travel-layer");
+    const craneBucketAction = root.querySelector<HTMLElement>(".build-crane-bucket-action");
     const bucket = root.querySelector<SVGGElement>(".build-crane-bucket");
     const pour = root.querySelector<SVGPathElement>(".build-crane-pour");
     const load = root.querySelector<SVGPathElement>(".build-crane-load");
@@ -273,6 +333,10 @@ export function HomeHero() {
       !linkFill ||
       !truck ||
       !crane ||
+      !craneBoom ||
+      !craneStick ||
+      !craneBucketTravel ||
+      !craneBucketAction ||
       !bucket ||
       !pour ||
       !load ||
@@ -291,7 +355,9 @@ export function HomeHero() {
     const progress = { value: 0 };
     const roadLength = roadLine.getTotalLength();
     const roadStops = milestones.map((_, index) => {
-      const targetX = ((index + 0.5) / milestones.length) * roadView.width;
+      const targetX =
+        (milestoneInset + ((index + 0.5) / milestones.length) * (1 - milestoneInset * 2)) *
+        roadView.width;
       let low = 0;
       let high = roadLength;
 
@@ -341,6 +407,9 @@ export function HomeHero() {
       }
 
       const angle = Math.atan2(dy, dx) * (180 / Math.PI);
+      const firstStop = roadStops[0] ?? 0;
+      const lastStop = roadStops[roadStops.length - 1] ?? 1;
+      const travel = Math.min(1, Math.max(0, (clamped - firstStop) / (lastStop - firstStop || 1)));
 
       gsap.set(truck, {
         x,
@@ -352,10 +421,13 @@ export function HomeHero() {
       });
       gsap.set(crane, {
         x,
-        xPercent: -56,
+        xPercent: -80,
         y: 0,
         rotation: 0,
       });
+      gsap.set(craneBoom, { rotation: -12 + travel * 36 });
+      gsap.set(craneStick, { rotation: -7 + travel * 24 });
+      gsap.set(craneBucketTravel, { rotation: -15 * travel });
       gsap.set(wheels, { rotation: length * value * 4 });
     };
 
@@ -372,8 +444,13 @@ export function HomeHero() {
       gsap.set(wheels[0], { svgOrigin: "44 70" });
       gsap.set(wheels[1], { svgOrigin: "132 70" });
       gsap.set(bucket, { svgOrigin: "66 46", ...bucketUp });
+      gsap.set(craneBucketAction, {
+        transformOrigin: "91.5% 58%",
+        rotation: heroBucketUp,
+      });
       gsap.set(truck, { opacity: 1 });
       gsap.set(crane, { opacity: 1 });
+      gsap.set(craneBucketAction, { rotation: heroBucketUp });
       gsap.set(pour, { strokeDasharray: 1, strokeDashoffset: 1, opacity: 0 });
       gsap.set(fills, { scaleY: 0, transformOrigin: "50% 0%" });
       syncRoad();
@@ -587,6 +664,7 @@ export function HomeHero() {
 
       const driveTo = (milestone: number, at: string) => {
         timeline.set(bucket, { ...bucketUp }, at);
+        timeline.set(craneBucketAction, { rotation: heroBucketUp }, at);
         timeline.call(() => {
           truck.dataset.driving = "true";
         }, undefined, at);
@@ -608,6 +686,11 @@ export function HomeHero() {
       const pourPhase = (index: number, at: string) => {
         timeline.call(() => setMilestone(index), undefined, at);
         timeline.to(bucket, { ...bucketDown, duration: 0.5, ease: "power2.in" }, at);
+        timeline.to(
+          craneBucketAction,
+          { rotation: heroBucketDown, duration: 0.5, ease: "power2.in" },
+          at,
+        );
         timeline.to(
           pour,
           { opacity: 1, strokeDashoffset: 0, duration: 0.34, ease: "power1.out" },
@@ -637,6 +720,11 @@ export function HomeHero() {
         timeline.to(drops, { opacity: 0, duration: 0.18 }, `${at}+=1.18`);
         timeline.to(load, { opacity: 1, duration: 0.24, ease: "power1.out" }, `${at}+=1.28`);
         timeline.to(bucket, { ...bucketUp, duration: 0.48, ease: "power2.out" }, `${at}+=1.24`);
+        timeline.to(
+          craneBucketAction,
+          { rotation: heroBucketUp, duration: 0.48, ease: "power2.out" },
+          `${at}+=1.24`,
+        );
         timeline.set(drops, { y: 0 }, `${at}+=1.75`);
       };
 
@@ -716,6 +804,7 @@ export function HomeHero() {
       }, undefined, "loop");
       timeline.to(fills, { scaleY: 0, duration: 0.7, ease: fade }, "loop");
       timeline.set(bucket, { ...bucketUp }, "loop");
+      timeline.set(craneBucketAction, { rotation: heroBucketUp }, "loop");
       timeline.set(pour, { opacity: 0, strokeDashoffset: 1 }, "loop");
       timeline.set(load, { opacity: 1 }, "loop");
       timeline.set(drops, { opacity: 0, y: 0 }, "loop");
@@ -849,7 +938,10 @@ export function HomeHero() {
 
       <div className="build-timeline-wrap">
           <div className="build-crane-rig">
-            <SiteExcavator />
+            <div className="build-crane-animation-model" aria-hidden="true">
+              <SiteExcavator />
+            </div>
+            <HeroCraneArtwork />
           </div>
           <div className="build-rail" aria-hidden="true">
             <svg

@@ -55,27 +55,6 @@ export function HomeSections() {
         </div>
       </section>
 
-      <section className="band" aria-labelledby="home-services-title">
-        <div className="layout-shell-wide">
-          <div className="band-head">
-            <p className="type-label">{home.services.eyebrow}</p>
-            <h2 id="home-services-title"><ForgedLine text={home.services.title} /></h2>
-          </div>
-          <ul className="grid-3 card-grid">
-            {home.services.items.map((item) => (
-              <li key={item.title}>
-                <article className="card media-card">
-                  <Photo src={item.image.src} alt={item.image.alt} sizes={cardImage} className="photo-wide" />
-                  <div className="card-body">
-                    <h3>{item.title}</h3>
-                    <p>{item.text}</p>
-                  </div>
-                </article>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
       <ConstructionGallery
         items={home.services.items}
       />

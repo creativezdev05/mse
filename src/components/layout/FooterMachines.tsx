@@ -29,7 +29,7 @@ export function FooterMachines() {
           sizes="9rem"
           className="footer-stone-heap"
         />
-        <div className="footer-crane">
+        {/* <div className="footer-crane">
           <Image
             src="/images/yard/crawler.png"
             alt=""
@@ -46,7 +46,7 @@ export function FooterMachines() {
             sizes="11rem"
             className="footer-machine-photo footer-crane-shovel"
           />
-        </div>
+        </div> */}
       </div>
     </div>
   );
