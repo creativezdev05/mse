@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { BrandMark } from "@/components/brand/BrandMark";
+import { FooterBrandLink } from "@/components/layout/FooterBrandLink";
 import { FooterMachines } from "@/components/layout/FooterMachines";
 import { contactDetails } from "@/data/content";
 import { brand, quoteLink, siteConfig } from "@/lib/site";
@@ -29,9 +29,7 @@ export async function SiteFooter() {
     <footer className="site-footer">
       <div className="layout-shell-wide site-footer-grid">
         <div className="site-footer-brand">
-          <Link href="/" className="site-brand" aria-label={brand.name}>
-            <BrandMark />
-          </Link>
+          <FooterBrandLink label={brand.name} />
           <p className="site-footer-description">{description}</p>
           <Link href={quoteLink.href} className="btn btn-secondary">
             {quoteLink.title}

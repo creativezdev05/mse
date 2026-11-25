@@ -1,5 +1,5 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 280 64" fill="none">
   <rect x="6" y="10" width="44" height="44" rx="4" fill="#1a1f24"/>
-  <text x="28" y="37" text-anchor="middle" fill="#ffaa1d" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">BT</text>
+  <text x="28" y="37" text-anchor="middle" fill="#D94801" font-family="Arial, Helvetica, sans-serif" font-size="14" font-weight="700">BT</text>
   <text x="62" y="39" fill="#1a1f24" font-family="Arial, Helvetica, sans-serif" font-size="18" font-weight="600">Bahria Town</text>
 </svg>

@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { FooterScrollUp } from "@/components/layout/FooterScrollUp";
 
 const smokePuffs = ["a", "b", "c"] as const;
 
 export function FooterMachines() {
   return (
-    <div className="footer-machines" aria-hidden="true">
-      <div className="footer-truck">
+    <div className="footer-machines">
+      <div className="footer-truck" aria-hidden="true">
         <Image
           src="/images/yard/mixer-truck.png"
           alt=""
@@ -21,14 +22,17 @@ export function FooterMachines() {
         </span>
       </div>
       <div className="footer-crane-set">
-        <Image
-          src="/images/yard/stone-heap.png"
-          alt=""
-          width={1161}
-          height={309}
-          sizes="9rem"
-          className="footer-stone-heap"
-        />
+        <div className="footer-sand">
+          <FooterScrollUp />
+          <Image
+            src="/images/yard/stone-heap.png"
+            alt=""
+            width={1161}
+            height={309}
+            sizes="9rem"
+            className="footer-stone-heap"
+          />
+        </div>
         {/* <div className="footer-crane">
           <Image
             src="/images/yard/crawler.png"

@@ -14,7 +14,7 @@ const swatches = [
   { name: "Muted", hex: "#D5DAE0", token: "var(--color-surface-muted)" },
   { name: "Ink", hex: "#1A1F24", token: "var(--color-ink)" },
   { name: "Body", hex: "#434B53", token: "var(--color-ink-muted)" },
-  { name: "Accent", hex: "#FFAA1D", token: "var(--color-accent)" },
+  { name: "Accent", hex: "#D94801", token: "var(--color-accent)" },
 ] as const;
 
 const radii = [

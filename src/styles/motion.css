@@ -12,6 +12,44 @@
       translate 700ms var(--ease-standard);
     transition-delay: calc(var(--reveal-index, 0) * 70ms);
   }
+
+  .card,
+  .step-list li {
+    transition:
+      transform var(--duration-base) var(--ease-standard),
+      box-shadow var(--duration-base) var(--ease-standard),
+      border-color var(--duration-base) var(--ease-standard);
+  }
+
+  .card:hover,
+  .step-list li:hover {
+    transform: translateY(-6px);
+    border-color: var(--color-line-strong);
+    box-shadow: 0 16px 34px rgb(26 31 36 / 0.14);
+  }
+
+  .photo:not(.media-card .photo):not(.photo ~ .photo):not(:has(~ .photo)) {
+    transition:
+      transform 520ms var(--ease-standard),
+      box-shadow 520ms var(--ease-standard);
+    transform-origin: center;
+  }
+
+  .photo:not(.media-card .photo):not(.photo ~ .photo):not(:has(~ .photo)):hover {
+    transform: perspective(1100px) rotateX(4deg) rotateY(-7deg);
+    box-shadow: 16px 22px 36px rgb(26 31 36 / 0.16);
+  }
+
+  .photo:is(.photo ~ .photo, :has(~ .photo)) img,
+  .media-card .photo img {
+    transition: transform 620ms var(--ease-standard);
+    transform-origin: center;
+  }
+
+  .photo:is(.photo ~ .photo, :has(~ .photo)):hover img,
+  .media-card:hover .photo img {
+    transform: scale(1.08);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -22,6 +60,9 @@
   .btn,
   .link,
   .card,
+  .step-list li,
+  .photo,
+  .photo img,
   .site-menu-panel,
   .reveal {
     transition: none;

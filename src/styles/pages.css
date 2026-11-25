@@ -512,7 +512,7 @@
     color: var(--color-on-inverse);
   }
 
-  main > .band:nth-child(even of .band) {
+  main > .band:nth-child(even of .band):not(.intro-band) {
     position: relative;
     isolation: isolate;
     background-color: #d9c2ad;
@@ -526,7 +526,7 @@
     color: var(--color-ink);
   }
 
-  main > .band:nth-child(even of .band)::before {
+  main > .band:nth-child(even of .band):not(.intro-band)::before {
     content: "";
     position: absolute;
     inset: 0;
@@ -594,11 +594,11 @@
   }
 
   main > .band:nth-child(odd of .band) .point-list li {
-    border-left-color: #ffaa1d;
+    border-left-color: #D94801;
   }
 
   main > .band:nth-child(odd of .band) :is(.badge-line, .field-error) {
-    color: #ffaa1d;
+    color: #D94801;
   }
 
   main > .band:nth-child(even of .band) .faq-list,
@@ -716,6 +716,7 @@
     inset: 0;
     display: grid;
     grid-template-columns: repeat(10, minmax(0, 1fr));
+    overflow: hidden;
     background: #fff;
     perspective: 900px;
     pointer-events: none;
@@ -724,7 +725,7 @@
   main > .band:nth-child(odd of .band):not(.intro-band) {
     position: relative;
     isolation: isolate;
-    background-color: #fff;
+    background-color: rgb(64 70 76);
     background-image: none;
   }
 
@@ -734,6 +735,7 @@
     inset: 0;
     display: none;
     grid-template-columns: repeat(10, minmax(0, 1fr));
+    overflow: hidden;
     perspective: 900px;
     pointer-events: none;
   }
@@ -743,7 +745,9 @@
   }
 
   .band-blind {
+    width: calc(100% + 2px);
     min-width: 0;
+    margin-inline-start: -1px;
     background-color: #141414;
     background-image: linear-gradient(
       90deg,
@@ -759,7 +763,9 @@
   }
 
   .intro-blind {
+    width: calc(100% + 2px);
     min-width: 0;
+    margin-inline-start: -1px;
     background-color: #141414;
     background-image: linear-gradient(
       90deg,
@@ -774,6 +780,13 @@
     animation-delay: 0s;
   }
 
+  @media (max-width: 47.99rem) {
+    .band-blind,
+    .intro-blind {
+      background-image: none;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .band-blind {
       animation: none;
@@ -781,7 +794,8 @@
     }
   }
 
-  .intro-stage {
+  .intro-stage,
+  main > section.band.intro-band > :not(.intro-blinds) {
     position: relative;
     z-index: 1;
   }

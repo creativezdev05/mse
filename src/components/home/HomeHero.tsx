@@ -22,9 +22,7 @@ const journeyImages = [
   "/images/journey/02-foundation.webp",
   "/images/journey/03-structure.webp",
   "/images/journey/04-masonry.webp",
-  "/images/journey/05-shell.webp",
   "/images/journey/06-finishing.webp",
-  "/images/journey/07-touches.webp",
   "/images/journey/08-complete.webp",
 ] as const;
 
@@ -69,37 +67,16 @@ const beats = [
   {
     image: 4,
     milestone: 4,
-    kicker: "05  /  Structure",
-    title: "Your Home Takes Shape.",
-    description: "A complete structure, ready for the finishing details.",
-  },
-  {
-    image: 5,
-    milestone: 4,
-    kicker: "06  /  Finishing",
+    kicker: "05  /  Finishing",
     title: "Details that Bring it to Life.",
     description: "Plastering, fittings and fixtures for a refined finish.",
   },
   {
-    image: 6,
-    milestone: 4,
-    kicker: "07  /  Final Touches",
-    title: "Almost There.",
-    description: "Final fittings, paint and quality checks before handover.",
-  },
-  {
-    image: 7,
+    image: 5,
     milestone: 5,
-    kicker: "08  /  Complete",
+    kicker: "06  /  Complete",
     title: "A Home Ready for You.",
     description: "From construction to handover, with complete peace of mind.",
-  },
-  {
-    image: 7,
-    milestone: 5,
-    kicker: "08  /  Complete",
-    title: "Built from the ground up.",
-    description: "Premium residential and commercial construction in Lahore.",
     finale: true,
   },
 ] as const;
@@ -289,11 +266,14 @@ function HeroTitleWall() {
   );
 }
 
+const milestoneEntryBeat = [0, 1, 2, 3, 4, 5] as const;
+
 export function HomeHero() {
   const rootRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const wallTimelineRef = useRef<gsap.core.Timeline | null>(null);
   const cardFlipDirectionRef = useRef(1);
+  const goToMilestoneRef = useRef<(milestone: number) => void>(() => {});
 
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -583,6 +563,25 @@ export function HomeHero() {
     };
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    let travelTween: gsap.core.Timeline | null = null;
+    let jumping = false;
+
+    const showBeatImage = (image: number, duration = 0) => {
+      frames.forEach((frame, index) => {
+        gsap.to(frame, {
+          opacity: index === image ? 1 : 0,
+          duration,
+          ease: fade,
+          overwrite: "auto",
+        });
+      });
+      gsap.to(glow, {
+        opacity: image === lastImage ? 0.42 : 0,
+        duration,
+        ease: "sine.out",
+        overwrite: "auto",
+      });
+    };
 
     if (reduced) {
       const closing = beats.length - 1;
@@ -614,8 +613,24 @@ export function HomeHero() {
 
       const onResize = () => syncRoad();
       window.addEventListener("resize", onResize);
+      goToMilestoneRef.current = (milestoneIndex: number) => {
+        const beatIndex = milestoneEntryBeat[milestoneIndex] ?? 0;
+        const beat = beats[beatIndex];
+        writeBeat(beatIndex, false);
+        showBeatImage(beat.image);
+        progress.value = roadStops[milestoneIndex] ?? 1;
+        syncRoad();
+        gsap.set(fills, {
+          scaleY: (index: number) => (index <= milestoneIndex ? 1 : 0),
+          transformOrigin: "50% 0%",
+        });
+        setMilestone(milestoneIndex);
+        gsap.set(bucket, { ...bucketUp });
+        gsap.set(craneBucketAction, { rotation: heroBucketUp });
+      };
 
       return () => {
+        goToMilestoneRef.current = () => {};
         window.removeEventListener("resize", onResize);
       };
     }
@@ -875,6 +890,101 @@ export function HomeHero() {
         truck.dataset.driving = "false";
         setMilestone(0);
       }, undefined, "loop+=2.62");
+
+      const poursOnArrival = (beatIndex: number) => {
+        const previous = beats[beatIndex - 1];
+        return beatIndex === 0 || beats[beatIndex].milestone !== previous?.milestone;
+      };
+
+      const settleAt = (beatIndex: number) => {
+        const labelTime = timeline.labels[`beat-${beatIndex}`] ?? 0;
+
+        if (beatIndex === 0) {
+          return labelTime;
+        }
+
+        return labelTime + (poursOnArrival(beatIndex) ? hop : 1.75);
+      };
+
+      goToMilestoneRef.current = (milestoneIndex: number) => {
+        const beatIndex = milestoneEntryBeat[milestoneIndex];
+
+        if (beatIndex === undefined) {
+          return;
+        }
+
+        const beat = beats[beatIndex];
+        const filledThrough = poursOnArrival(beatIndex) ? milestoneIndex - 1 : milestoneIndex;
+        travelTween?.kill();
+        jumping = true;
+        timeline.pause();
+        truck.dataset.driving = "true";
+        gsap.set(bucket, { ...bucketUp });
+        gsap.set(craneBucketAction, { rotation: heroBucketUp });
+        gsap.set(pour, { opacity: 0, strokeDashoffset: 1 });
+        gsap.set(load, { opacity: 1 });
+        gsap.set(drops, { opacity: 0, y: 0 });
+        setMilestone(milestoneIndex);
+        writeBeat(beatIndex, true);
+
+        const distance = Math.abs((roadStops[milestoneIndex] ?? 0) - progress.value);
+        const duration = gsap.utils.clamp(0.4, 1.15, 0.35 + distance * 2.4);
+        const travel = gsap.timeline({
+          onComplete: () => {
+            jumping = false;
+            truck.dataset.driving = "false";
+            timeline.seek(settleAt(beatIndex), true);
+            syncRoad();
+            setMilestone(milestoneIndex);
+
+            if (!document.hidden) {
+              timeline.play();
+            }
+          },
+        });
+        travelTween = travel;
+        travel.to(
+          progress,
+          {
+            value: roadStops[milestoneIndex] ?? 0,
+            duration,
+            ease: "power2.inOut",
+            onUpdate: syncRoad,
+          },
+          0,
+        );
+        frames.forEach((frame, index) => {
+          travel.to(
+            frame,
+            {
+              opacity: index === beat.image ? 1 : 0,
+              duration: Math.min(duration, 0.8),
+              ease: fade,
+            },
+            0,
+          );
+        });
+        travel.to(
+          glow,
+          {
+            opacity: beat.image === lastImage ? 0.42 : 0,
+            duration: Math.min(duration, 0.7),
+            ease: "sine.out",
+          },
+          0,
+        );
+        fills.forEach((fill, index) => {
+          travel.to(
+            fill,
+            {
+              scaleY: index <= filledThrough ? 1 : 0,
+              duration: Math.min(duration, 0.55),
+              ease: "power1.inOut",
+            },
+            0,
+          );
+        });
+      };
     }, root);
 
     const onVisibility = () => {
@@ -888,7 +998,10 @@ export function HomeHero() {
         return;
       }
 
-      timelineRef.current?.play();
+      if (!jumping) {
+        timelineRef.current?.play();
+      }
+
       wallTimelineRef.current?.play();
       copyTimeline?.play();
     };
@@ -899,6 +1012,8 @@ export function HomeHero() {
     window.addEventListener("resize", onResize);
 
     return () => {
+      goToMilestoneRef.current = () => {};
+      travelTween?.kill();
       document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("resize", onResize);
       root.removeAttribute("data-paused");
@@ -1011,13 +1126,20 @@ export function HomeHero() {
                   key={milestone.label}
                   aria-current={index === 0 ? "step" : undefined}
                 >
-                  <span className="build-mark-slot">
-                    <span className="build-mark" data-state={index === 0 ? "active" : "idle"}>
-                      <span className="build-mark-fill" />
-                      <Icon size={16} strokeWidth={1.75} aria-hidden="true" />
+                  <button
+                    type="button"
+                    className="build-milestone-button"
+                    aria-label={`Show ${milestone.label}`}
+                    onClick={() => goToMilestoneRef.current(index)}
+                  >
+                    <span className="build-mark-slot">
+                      <span className="build-mark" data-state={index === 0 ? "active" : "idle"}>
+                        <span className="build-mark-fill" />
+                        <Icon size={16} strokeWidth={1.75} aria-hidden="true" />
+                      </span>
                     </span>
-                  </span>
-                  <span className="build-label">{milestone.label}</span>
+                    <span className="build-label">{milestone.label}</span>
+                  </button>
                 </li>
               );
             })}

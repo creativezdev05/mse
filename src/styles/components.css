@@ -220,7 +220,7 @@
   .site-header.is-overlay .site-nav-link[aria-current="page"] {
     color: #f4f1ec;
     text-decoration: underline;
-    text-decoration-color: #ffaa1d;
+    text-decoration-color: #D94801;
     text-decoration-thickness: 2px;
     text-underline-offset: 0.4em;
   }
@@ -806,7 +806,7 @@
   }
 
   .forged-base {
-    color: #3a4148;
+    color: var(--color-ink);
     white-space: pre-wrap;
   }
 
@@ -816,7 +816,7 @@
   }
 
   .forged-line-light .forged-base {
-    color: #3a4148;
+    color: var(--color-ink);
   }
 
   .home-hero-title .hero-read::after {
@@ -1288,7 +1288,7 @@
   }
 
   .build-truck-stripe {
-    fill: #ffaa1d;
+    fill: #D94801;
   }
 
   .build-truck-roll {
@@ -1311,7 +1311,7 @@
   }
 
   .build-truck-cab {
-    fill: #ffaa1d;
+    fill: #D94801;
   }
 
   .build-truck-window,
@@ -1336,11 +1336,11 @@
   }
 
   .build-crane-body {
-    fill: #e2a31a;
+    fill: #C13F00;
   }
 
   .build-crane-cab {
-    fill: #f5c531;
+    fill: #F0783B;
   }
 
   .build-crane-window {
@@ -1350,7 +1350,7 @@
   .build-crane-boom,
   .build-crane-stick {
     fill: none;
-    stroke: #f0b81e;
+    stroke: #D94801;
     stroke-width: 5.5;
     stroke-linecap: round;
   }
@@ -1433,10 +1433,33 @@
   .build-milestone {
     position: relative;
     display: flex;
+    min-width: 0;
+    pointer-events: auto;
+  }
+
+  .build-milestone-button {
+    display: flex;
     flex-direction: column;
     align-items: center;
     gap: 0.45rem;
-    min-width: 0;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    background: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+  }
+
+  .build-milestone-button:focus-visible {
+    outline: 2px solid #f4f1ec;
+    outline-offset: 4px;
+    border-radius: 999px;
+  }
+
+  .build-milestone-button:hover .build-mark {
+    transform: scale(1.1);
   }
 
   .build-milestone:nth-child(5) {
