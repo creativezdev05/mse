@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "motion/react";
 
@@ -26,21 +26,21 @@ const slotMotion: Record<
   left: {
     x: "-58%",
     rotateY: 28,
-    scale: 0.78,
+    scale: 0.72,
     zIndex: 1,
     opacity: 0.78,
   },
   center: {
     x: "0%",
     rotateY: 0,
-    scale: 1.08,
+    scale: 1.2,
     zIndex: 3,
     opacity: 1,
   },
   right: {
     x: "58%",
     rotateY: -28,
-    scale: 0.78,
+    scale: 0.72,
     zIndex: 1,
     opacity: 0.78,
   },
@@ -57,11 +57,26 @@ export default function ConstructionGallery({
   items,
 }: ConstructionGalleryProps) {
   const [active, setActive] = useState(0);
+  const [paused, setPaused] = useState(false);
   const startX = useRef(0);
   const dragging = useRef(false);
   const moved = useRef(false);
 
   const count = items.length;
+
+  useEffect(() => {
+    if (count < 2 || paused) return;
+
+    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    const timer = window.setInterval(() => {
+      if (document.visibilityState === "visible") {
+        setActive((currentIndex) => (currentIndex + 1) % count);
+      }
+    }, 4200);
+
+    return () => window.clearInterval(timer);
+  }, [count, paused]);
 
   if (count === 0) return null;
 
@@ -124,6 +139,14 @@ export default function ConstructionGallery({
 
       <div
         className="coverflow-stage"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onFocusCapture={() => setPaused(true)}
+        onBlurCapture={(e) => {
+          if (!e.currentTarget.contains(e.relatedTarget as Node | null)) {
+            setPaused(false);
+          }
+        }}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}

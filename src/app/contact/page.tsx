@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
@@ -25,6 +26,7 @@ export default function ContactPage() {
       </div>
 
       <section className="band band-muted" aria-label="Reply times">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <ul className="stat-grid">
             {contactPage.stats.map((item) => (
@@ -38,6 +40,7 @@ export default function ContactPage() {
       </section>
 
       <section className="band" aria-labelledby="contact-form-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <h2 id="contact-form-title"><ForgedLine text={contactPage.formTitle} /></h2>
@@ -66,6 +69,7 @@ export default function ContactPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="contact-offices-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="contact-offices-title"><ForgedLine text="Both studios" /></h2>
@@ -93,6 +97,7 @@ export default function ContactPage() {
       </section>
 
       <section className="band" aria-labelledby="contact-methods-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <h2 id="contact-methods-title" className="visually-hidden">
             Ways to reach the studio
@@ -110,6 +115,7 @@ export default function ContactPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="contact-path-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="contact-path-title"><ForgedLine text={contactPage.path.title} /></h2>
@@ -129,6 +135,7 @@ export default function ContactPage() {
       </section>
 
       <section className="band" aria-labelledby="contact-areas-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="contact-areas-title"><ForgedLine text="Societies we already work in" /></h2>

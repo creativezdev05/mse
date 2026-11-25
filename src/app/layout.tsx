@@ -7,6 +7,7 @@ import { brand } from "@/lib/site";
 import { spaceGrotesk } from "./fonts";
 import "./globals.css";
 import ScrollToTop from "@/components/ScrollToTop";
+import { GoogleAnalytics } from "@/components/layout/GoogleAnalytics";
 export const metadata: Metadata = {
   title: {
     default: brand.name,
@@ -21,6 +22,7 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       className={spaceGrotesk.variable}
     >
       <body>
+        <GoogleAnalytics />
         <ScrollToTop />
         <TrowelCursor />
         <SiteHeader />

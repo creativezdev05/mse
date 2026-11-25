@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
@@ -24,6 +25,7 @@ export default function ServicesPage() {
       </div>
 
       <section className="band" aria-label="Service categories">
+        <BandBlinds />
         <div className="layout-shell-wide grid-2">
           {serviceGroups.map((group) => (
             <div key={group.label} className="cluster">
@@ -41,6 +43,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="band band-muted" aria-label="How the studio works">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <ul className="grid-3 card-grid">
             {servicesPage.values.map((item) => (
@@ -56,6 +59,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="band" aria-labelledby="services-sketch-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <p className="type-label">{servicesPage.sketches.eyebrow}</p>
@@ -83,6 +87,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="services-offer-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="services-offer-title"><ForgedLine text={servicesPage.offers.title} /></h2>
@@ -101,6 +106,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="band" aria-labelledby="services-philosophy-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="services-philosophy-title"><ForgedLine text={servicesPage.philosophy.title} /></h2>
@@ -121,6 +127,7 @@ export default function ServicesPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="services-sides-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="services-sides-title"><ForgedLine text={servicesPage.sides.title} /></h2>

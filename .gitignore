@@ -39,3 +39,8 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+next-env.d.ts
+
+mse-construction-firebase-adminsdk-fbsvc-f7df2da61e.json
+firestore.rules

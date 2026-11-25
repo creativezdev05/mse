@@ -117,7 +117,7 @@ const bucketUp = { y: 0, rotation: -128 };
 const bucketDown = { y: 0, rotation: 12 };
 const heroBucketUp = 0;
 const heroBucketDown = 16;
-const milestoneInset = 0.05;
+const milestoneInset = 0.08;
 const craneImageSize = { width: 941, height: 647 };
 
 const drumPeriod = 16;
@@ -293,6 +293,7 @@ export function HomeHero() {
   const rootRef = useRef<HTMLElement>(null);
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const wallTimelineRef = useRef<gsap.core.Timeline | null>(null);
+  const cardFlipDirectionRef = useRef(1);
 
   useLayoutEffect(() => {
     const root = rootRef.current;
@@ -464,6 +465,8 @@ export function HomeHero() {
     const lastImage = journeyImages.length - 1;
     let shownBeat = 0;
     let wallStarted = false;
+    let prepareWallForFlip: (() => void) | null = null;
+    let pendingMilestoneLines: string[] | null = null;
     let copyTimeline: gsap.core.Timeline | null = null;
 
     if (!copyBlock) {
@@ -503,6 +506,30 @@ export function HomeHero() {
       wallTimelineRef.current?.restart();
     };
 
+    const flipCard = (lines: string[]) => {
+      cardFlipDirectionRef.current *= -1;
+      const direction = cardFlipDirectionRef.current;
+      const flip = gsap.timeline();
+
+      flip
+        .to(
+          copyBlock,
+          { rotationY: direction * 90, opacity: 0, duration: 0.24, ease: "power2.in" },
+        )
+        .call(() => {
+          copy.forEach((element, line) => setCopyText(element, lines[line]));
+          prepareWallForFlip?.();
+        })
+        .set(copyBlock, { rotationY: -direction * 90 })
+        .to(copyBlock, { rotationY: 0, opacity: 1, duration: 0.28, ease: "power2.out" })
+        .call(startWall);
+      return flip;
+    };
+
+    const showMilestone = (lines: string[]) => {
+      copyTimeline = flipCard(lines);
+    };
+
     const setMilestone = (active: number) => {
       marks.forEach((mark, index) => {
         mark.dataset.state = index < active ? "complete" : index === active ? "active" : "idle";
@@ -531,6 +558,7 @@ export function HomeHero() {
           setCopyText(element, lines[line]);
         });
         gsap.set(copy, { opacity: 1, y: 0 });
+        gsap.set(copyBlock, { rotationY: 0, opacity: 1 });
 
         if (!wallStarted) {
           wallStarted = true;
@@ -542,25 +570,16 @@ export function HomeHero() {
       }
 
       shownBeat = index;
+      gsap.set(copy, { opacity: 1, y: 0 });
+      gsap.set(copyBlock, { rotationY: 0, opacity: 1 });
       wallStarted = true;
-      startWall();
-      const swap = gsap.timeline();
-      copyTimeline = swap;
+      const wallIsComplete = wallTimelineRef.current?.progress() === 1;
 
-      copy.forEach((element, line) => {
-        const at = line * 0.09;
-        swap
-          .to(element, { opacity: 0, y: -8, duration: 0.34, ease: "power2.in" }, at)
-          .add(() => {
-            setCopyText(element, lines[line]);
-          }, at + 0.34)
-          .fromTo(
-            element,
-            { opacity: 0, y: 10 },
-            { opacity: 1, y: 0, duration: 0.46, ease: rise },
-            at + 0.34,
-          );
-      });
+      if (wallIsComplete) {
+        showMilestone(lines);
+      } else {
+        pendingMilestoneLines = lines;
+      }
     };
 
     const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -618,6 +637,17 @@ export function HomeHero() {
           restR: 0,
         }));
       });
+      prepareWallForFlip = () => {
+        gsap.set(copyBlock, { "--plaster": -0.24, "--paint": -0.32 });
+        gsap.set(
+          bricks.map((brick) => brick.el),
+          {
+            x: 0,
+            y: -drop,
+            rotation: 0,
+          },
+        );
+      };
       const wallTimeline = gsap.timeline({ paused: true });
       wallTimelineRef.current = wallTimeline;
       wallTimeline.set(copyBlock, { "--plaster": -0.24, "--paint": -0.32 }, 0);
@@ -649,6 +679,14 @@ export function HomeHero() {
 
       wallTimeline.to(copyBlock, { "--plaster": 1.22, duration: 1.2, ease: fade }, 2.05);
       wallTimeline.to(copyBlock, { "--paint": 1.22, duration: 1.25, ease: fade }, 3.35);
+      wallTimeline.eventCallback("onComplete", () => {
+        const lines = pendingMilestoneLines;
+        pendingMilestoneLines = null;
+
+        if (lines) {
+          showMilestone(lines);
+        }
+      });
 
       const timeline = gsap.timeline({ repeat: -1 });
       timelineRef.current = timeline;
@@ -846,11 +884,13 @@ export function HomeHero() {
       if (hidden) {
         timelineRef.current?.pause();
         wallTimelineRef.current?.pause();
+        copyTimeline?.pause();
         return;
       }
 
       timelineRef.current?.play();
       wallTimelineRef.current?.play();
+      copyTimeline?.play();
     };
 
     const onResize = () => syncRoad();

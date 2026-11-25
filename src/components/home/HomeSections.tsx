@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import Link from "next/link";
 import { Photo } from "@/components/content/Blocks";
 import { ContactForm } from "@/components/contact/ContactForm";
@@ -26,6 +27,14 @@ export function HomeSections() {
   return (
     <>
       <section className="band intro-band" aria-labelledby="home-intro-title">
+        <div className="intro-blinds" aria-hidden="true">
+          {Array.from({ length: 10 }, (_, index) => (
+            <span
+              className="intro-blind"
+              key={index}
+            />
+          ))}
+        </div>
         <div className="layout-shell-wide intro-stage">
           <IntroLead id="home-intro-title">{home.intro.lead}</IntroLead>
           <IntroStats stats={home.intro.stats} />
@@ -33,6 +42,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-excellence-title">
+        <BandBlinds />
         <div className="layout-shell-wide split">
           <div className="cluster">
             <p className="type-label">{home.excellence.eyebrow}</p>
@@ -60,6 +70,7 @@ export function HomeSections() {
       />
 
       <section className="band band-muted" aria-labelledby="home-trust-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <p className="type-label">{home.trust.eyebrow}</p>
@@ -71,6 +82,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-experts-title">
+        <BandBlinds />
         <div className="layout-shell-wide cluster-lg">
           <div className="split align-start">
             <Photo
@@ -100,6 +112,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-precision-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <p className="type-label">{home.precision.eyebrow}</p>
@@ -131,6 +144,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-projects-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <p className="type-label">{home.projects.eyebrow}</p>
@@ -154,6 +168,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-logs-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-logs-title"><ForgedLine text={home.logs.title} /></h2>
@@ -178,6 +193,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-steps-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-steps-title"><ForgedLine text={home.steps.title} /></h2>
@@ -207,6 +223,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-offices-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <p className="type-label">Studios</p>
@@ -231,6 +248,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-faq-title">
+        <BandBlinds />
         <div className="layout-shell layout-narrow-block">
           <h2 id="home-faq-title"><ForgedLine text={home.faq.title} /></h2>
           <div className="faq-list">
@@ -245,6 +263,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-offer-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <p className="type-label">{home.offer.eyebrow}</p>
@@ -264,6 +283,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-studio-title">
+        <BandBlinds />
         <div className="layout-shell-wide studio">
           <div className="stack">
             {home.studio.left.map((image) => (
@@ -287,6 +307,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-reviews-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-reviews-title"><ForgedLine text={home.reviews.title} /></h2>
@@ -309,6 +330,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-inquiry-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <Photo
             src={home.inquiry.image.src}
@@ -330,6 +352,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-writing-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <p className="type-label">{home.writing.eyebrow}</p>
@@ -350,6 +373,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-boq-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <h2 id="home-boq-title"><ForgedLine text={home.boq.title} /></h2>
@@ -374,6 +398,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-inverse" aria-labelledby="home-coverage-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-coverage-title"><ForgedLine text={home.coverage.title} /></h2>
@@ -384,6 +409,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-rates-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-rates-title"><ForgedLine text={home.ratesIntro.title} /></h2>
@@ -417,6 +443,7 @@ export function HomeSections() {
       </section>
 
       <section className="band band-muted" aria-labelledby="home-compare-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-compare-title"><ForgedLine text={home.compare.title} /></h2>
@@ -449,6 +476,7 @@ export function HomeSections() {
       </section>
 
       <section className="band" aria-labelledby="home-areas-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="home-areas-title"><ForgedLine text={home.societies.title} /></h2>

@@ -2,6 +2,7 @@
 
 import { useId, useState, type FormEvent } from "react";
 import type { ServiceOption } from "@/data/content";
+import { trackFormSubmission } from "@/components/layout/GoogleAnalytics";
 
 type Fields = {
   name: string;
@@ -106,6 +107,7 @@ export function ContactForm({
       }
 
       setValues(empty);
+      trackFormSubmission();
       setStatus("sent");
     } catch {
       setStatus("failed");

@@ -2,7 +2,15 @@
 
 import Image from "next/image";
 import { useRef } from "react";
-import { motion, useReducedMotion, useScroll, useSpring, useTransform } from "motion/react";
+import {
+  animate,
+  motion,
+  useMotionValue,
+  useMotionValueEvent,
+  useReducedMotion,
+  useScroll,
+  useTransform,
+} from "motion/react";
 
 const imageSize = { width: 941, height: 647 };
 const trackDuration = 3.2;
@@ -23,26 +31,33 @@ export function ScrollCrane() {
   const railRef = useRef<HTMLDivElement>(null);
   const reduceMotion = useReducedMotion();
 
-  const { scrollYProgress } = useScroll({
-    target: railRef,
-    offset: ["start start", "end end"],
+  const { scrollY } = useScroll();
+  const craneProgress = useMotionValue(0);
+  const lastDirection = useRef<"down" | "up" | null>(null);
+
+  useMotionValueEvent(scrollY, "change", (latest) => {
+    const previous = scrollY.getPrevious();
+    if (previous === undefined || latest === previous) return;
+
+    const direction = latest > previous ? "down" : "up";
+    if (direction === lastDirection.current) return;
+
+    lastDirection.current = direction;
+    const destination = direction === "down" ? 1 : 0;
+    if (reduceMotion) {
+      craneProgress.set(destination);
+      return;
+    }
+
+    animate(craneProgress, destination, {
+      duration: 2.1,
+      ease: [0.22, 1, 0.36, 1],
+    });
   });
 
-  const boomAngle = useSpring(useTransform(scrollYProgress, [0, 1], [-12, 24]), {
-    stiffness: 260,
-    damping: 36,
-    mass: 1,
-  });
-  const stickAngle = useSpring(useTransform(scrollYProgress, [0, 1], [-7, 17]), {
-    stiffness: 300,
-    damping: 38,
-    mass: 1,
-  });
-  const bucketAngle = useSpring(useTransform(scrollYProgress, [0, 1], [0, -15]), {
-    stiffness: 320,
-    damping: 40,
-    mass: 1,
-  });
+  const boomAngle = useTransform(craneProgress, [0, 1], [-12, 24]);
+  const stickAngle = useTransform(craneProgress, [0, 1], [-7, 17]);
+  const bucketAngle = useTransform(craneProgress, [0, 1], [0, -15]);
   const motionStyle = (angle: typeof boomAngle) => (reduceMotion ? undefined : { rotate: angle });
 
   return (

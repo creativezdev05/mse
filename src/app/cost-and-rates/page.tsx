@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
@@ -24,6 +25,7 @@ export default function CostAndRatesPage() {
       </div>
 
       <section className="band" aria-label="Rate categories">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <ul className="chip-list">
             {rateLinks.map((item) => (
@@ -36,6 +38,7 @@ export default function CostAndRatesPage() {
       </section>
 
       <section className="band band-muted" aria-label="Rate cards">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <p className="band-head">{rates.note}</p>
           <ul className="grid-4 card-grid">
@@ -60,6 +63,7 @@ export default function CostAndRatesPage() {
       </section>
 
       <section className="band" aria-labelledby="cost-table-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="cost-table-title"><ForgedLine text="Bands by plot" /></h2>
@@ -91,6 +95,7 @@ export default function CostAndRatesPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="cost-compare-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="cost-compare-title"><ForgedLine text="Before you compare a rate" /></h2>
@@ -122,6 +127,7 @@ export default function CostAndRatesPage() {
       </section>
 
       <section className="band" aria-labelledby="cost-specimen-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <h2 id="cost-specimen-title"><ForgedLine text="What the schedule names" /></h2>

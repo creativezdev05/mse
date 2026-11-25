@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
@@ -24,6 +25,7 @@ export default function AreasPage() {
       </div>
 
       <section className="band band-muted" aria-label="Lahore areas">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <ul className="grid-3 card-grid">
             {areas.map((area) => (
@@ -48,6 +50,7 @@ export default function AreasPage() {
       </section>
 
       <section className="band" aria-labelledby="areas-offices-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="areas-offices-title"><ForgedLine text="Studios for these areas" /></h2>

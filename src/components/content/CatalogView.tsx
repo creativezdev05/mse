@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
 import type { CatalogEntry } from "@/data/catalogs";
@@ -16,6 +17,7 @@ export function CatalogView({ entry, related, relatedLabel }: CatalogViewProps) 
       <PageIntro eyebrow={entry.eyebrow} title={entry.name} lede={entry.lede} />
 
       <section className="band band-muted" aria-labelledby="catalog-story">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <Photo
             src={entry.image.src}
@@ -43,6 +45,7 @@ export function CatalogView({ entry, related, relatedLabel }: CatalogViewProps) 
       </section>
 
       <section className="band" aria-labelledby="catalog-points">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <h2 id="catalog-points" className="band-head">
             <ForgedLine text="What changes with this one" />
@@ -62,6 +65,7 @@ export function CatalogView({ entry, related, relatedLabel }: CatalogViewProps) 
 
       {related.length > 0 ? (
         <section className="band band-muted" aria-labelledby="catalog-related">
+          <BandBlinds />
           <div className="layout-shell-wide">
             <h2 id="catalog-related" className="band-head">
               <ForgedLine text={relatedLabel} />

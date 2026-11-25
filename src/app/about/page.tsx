@@ -1,3 +1,4 @@
+import { BandBlinds } from "@/components/layout/BandBlinds";
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageIntro, Photo } from "@/components/content/Blocks";
@@ -23,6 +24,7 @@ export default function AboutPage() {
       </div>
 
       <section className="band band-muted" aria-label="Studio facts">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <Photo
             src={aboutPage.portrait.src}
@@ -42,6 +44,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band" aria-labelledby="about-founder-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <Photo
             src={aboutPage.founder.image.src}
@@ -70,6 +73,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="about-story-title">
+        <BandBlinds />
         <div className="layout-shell-wide split align-start">
           <div className="cluster">
             <h2 id="about-story-title"><ForgedLine text={aboutPage.story.title} /></h2>
@@ -90,6 +94,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band" aria-labelledby="about-principles-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="about-principles-title"><ForgedLine text={aboutPage.principles.title} /></h2>
@@ -108,6 +113,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band band-inverse" aria-labelledby="about-warranty-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="about-warranty-title"><ForgedLine text={aboutPage.warranty.title} /></h2>
@@ -130,6 +136,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band" aria-labelledby="about-team-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="about-team-title"><ForgedLine text={aboutPage.team.title} /></h2>
@@ -157,6 +164,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="about-offices-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="about-offices-title"><ForgedLine text="The two studios" /></h2>
@@ -182,6 +190,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band" aria-labelledby="about-reviews-title">
+        <BandBlinds />
         <div className="layout-shell-wide">
           <div className="band-head">
             <h2 id="about-reviews-title"><ForgedLine text="Notes from owners" /></h2>
@@ -203,6 +212,7 @@ export default function AboutPage() {
       </section>
 
       <section className="band band-muted" aria-labelledby="about-close-title">
+        <BandBlinds />
         <div className="layout-shell-wide cluster">
           <h2 id="about-close-title"><ForgedLine text={aboutPage.close.title} /></h2>
           <p className="page-lede">{aboutPage.close.body}</p>
